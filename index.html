@@ -9,7 +9,7 @@
     <style>
         :root { --primary: #6366f1; --success: #10b981; --danger: #f43f5e; --dark: #0f172a; --bg: #f1f5f9; }
         * { box-sizing: border-box; font-family: 'Outfit', sans-serif; transition: 0.3s; }
-        body { background: var(--bg); margin: 0; padding: 15px; display: flex; justify-content: center; min-height: 100vh; }
+        body { background: var(--bg); margin: 0; padding: 15px; display: flex; justify-content: center; min-height: 100vh; overflow-x: hidden; }
         .container { background: white; border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); width: 100%; max-width: 1100px; padding: 30px; align-self: center; border: 1px solid #fff; }
         .hidden { display: none !important; }
         .quiz-wrapper { display: flex; gap: 30px; margin-top: 20px; }
@@ -33,9 +33,7 @@
         .active-all { border-color: var(--primary); color: var(--primary); background: #f5f3ff; }
     </style>
 </head>
-<body>
-
-<div class="container">
+<body oncontextmenu="return false;"> <div class="container">
     <div id="scr-login" style="max-width: 400px; margin: auto; text-align: center;">
         <h1 style="color:var(--primary); font-family:'Montserrat';">O-LEVEL ELITE</h1>
         <p>Student Examination Portal</p>
@@ -114,7 +112,34 @@
 
     const safeHTML = (str) => { const div = document.createElement('div'); div.textContent = str; return div.innerHTML; };
 
-    window.goModules = () => { if(document.getElementById('u-name').value.trim()) { hide(); document.getElementById('scr-ins').classList.remove('hidden'); } else alert("Naam likhna zaroori hai!"); };
+    // --- FULLSCREEN LOGIC ---
+    function openFullscreen() {
+        const elem = document.documentElement;
+        if (elem.requestFullscreen) { elem.requestFullscreen(); }
+        else if (elem.webkitRequestFullscreen) { elem.webkitRequestFullscreen(); }
+        else if (elem.msRequestFullscreen) { elem.msRequestFullscreen(); }
+    }
+
+    // --- SECURITY BLOCKS (DevTools & Keys) ---
+    document.addEventListener('keydown', function(e) {
+        // Block F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
+        if (e.key === "F12" || 
+            (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J" || e.key === "C")) || 
+            (e.ctrlKey && e.key === "U")) {
+            e.preventDefault();
+            alert("Warning: Developer Tools are restricted!");
+            return false;
+        }
+    });
+
+    // --- CORE QUIZ FUNCTIONS ---
+    window.goModules = () => { 
+        if(document.getElementById('u-name').value.trim()) { 
+            openFullscreen(); // Start Fullscreen
+            hide(); 
+            document.getElementById('scr-ins').classList.remove('hidden'); 
+        } else alert("Naam likhna zaroori hai!"); 
+    };
 
     window.start = async (m) => {
         mod = m; const snap = await get(ref(db, `quizzes/${m}`));
@@ -152,6 +177,7 @@
         document.getElementById('r-score').innerText = `Score: ${score} / ${qs.length}`;
         document.getElementById('r-grade').innerText = g;
         hide(); document.getElementById('scr-res').classList.remove('hidden'); filterReview('all');
+        if (document.exitFullscreen) { document.exitFullscreen(); } // Exit Fullscreen on completion
     };
 
     window.filterReview = (type) => {
