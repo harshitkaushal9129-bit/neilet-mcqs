@@ -3,7 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>NIELIT MCQ Practice Set 2026 | O Level & CCC Elite Portal</title>
+    <meta name="description" content="Free NIELIT O-Level (M1, M2, M3, M4) and CCC MCQ practice portal. Latest 2026 exam pattern by Harshit Kaushal.">
+    <meta name="keywords" content="NIELIT, NIELIT MCQ, O Level Practice Set, CCC Online Test, Harshit Kaushal">
+    
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="manifest.json">
+
+    <link rel="icon" type="image/png" href="logo-192.png">
+    <link rel="shortcut icon" sizes="192x192" href="logo-192.png">
+    <link rel="apple-touch-icon" href="logo-192.png">
+    
+    <meta name="theme-color" content="#6366f1">
+
+    <meta property="og:title" content="NIELIT MCQ Practice Portal 2026">
+    <meta property="og:description" content="Prepare for NIELIT exams with our elite MCQ portal.">
+    <meta property="og:url" content="https://harshitkaushal9129-bit.github.io/neilet-mcqs/">
+
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     
@@ -12,7 +30,6 @@
         * { box-sizing: border-box; font-family: 'Outfit', sans-serif; transition: 0.3s; }
         body { background: var(--bg); margin: 0; padding: 15px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; overflow-x: hidden; }
         
-        /* Layout logic unchanged */
         .exam-header { width: 100%; max-width: 1100px; background: var(--dark); color: white; padding: 15px 25px; border-radius: 15px; margin-bottom: 20px; display: none; justify-content: space-between; align-items: center; box-shadow: 0 10px 15px rgba(0,0,0,0.1); }
         .user-info { display: flex; align-items: center; gap: 10px; font-weight: 600; }
         .dot { height: 10px; width: 10px; background-color: #22c55e; border-radius: 50%; display: inline-block; animation: blink 1.5s infinite; }
@@ -21,18 +38,19 @@
         .container { background: white; border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); width: 100%; max-width: 1100px; padding: 30px; border: 1px solid #fff; }
         .hidden { display: none !important; }
 
-        /* REFINED LOGIN UI (Aapka original structure, bas thoda saaf) */
-        .login-inner { max-width: 400px; margin: auto; text-align: center; padding: 10px; }
-        .login-inner h1 { color: var(--primary); font-family: 'Montserrat'; font-size: 2.5rem; margin-bottom: 0; letter-spacing: -1px; }
-        .login-inner p { color: #64748b; font-weight: 500; margin-bottom: 30px; }
+        /* UPGRADED LOGIN UI */
+        .login-box { max-width: 400px; margin: 40px auto; text-align: center; }
+        .login-box h1 { color: var(--primary); font-family: 'Montserrat'; font-size: 2.2rem; margin: 10px 0; }
+        .login-box p { color: #64748b; margin-bottom: 25px; }
         
         .u-input { 
             width: 100%; padding: 18px; border-radius: 15px; border: 2px solid #e2e8f0; 
             margin-bottom: 20px; outline: none; font-size: 16px; background: #f8fafc;
+            text-align: center;
         }
         .u-input:focus { border-color: var(--primary); background: #fff; box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1); }
 
-        /* Baki saari styles wahi hain */
+        /* General Buttons & Quiz Styles */
         .quiz-wrapper { display: flex; gap: 30px; margin-top: 20px; }
         .main-quiz-area { flex: 1; }
         .right-sidebar { width: 280px; background: #f8fafc; padding: 20px; border-radius: 20px; border: 1px solid #e2e8f0; height: fit-content; position: sticky; top: 20px; }
@@ -47,7 +65,7 @@
         .opt:hover { border-color: var(--primary); background: #f5f3ff; }
         .opt.selected { background: var(--primary); color: white; border-color: var(--primary); }
         .btn { padding: 14px 28px; border-radius: 12px; border: none; cursor: pointer; font-weight: 700; display: flex; align-items: center; gap: 8px; justify-content: center; text-decoration: none; }
-        .btn-pri { background: var(--primary); color: white; box-shadow: 0 4px 12px rgba(99,102,241,0.2); }
+        .btn-pri { background: var(--primary); color: white; }
         .donate-box { margin: 25px 0; padding: 25px; border: 2px dashed var(--primary); border-radius: 25px; background: #f8fafc; text-align: center; }
         .qr-img { width: 220px; height: 220px; border: 10px solid white; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); margin: 15px auto; }
         .f-btn { padding: 10px 15px; border-radius: 8px; border: 1px solid #ddd; cursor: pointer; background: white; }
@@ -66,13 +84,15 @@
 </div>
 
 <div class="container">
-    <div id="scr-login" class="login-inner">
+    <div id="scr-login" class="login-box">
         <div style="font-size: 50px; margin-bottom: 10px;">🎓</div>
-        <h1>O-LEVEL ELITE</h1>
-        <p>Official Examination Practice Portal</p>
-        <input type="text" id="u-name" class="u-input" placeholder="Put your name here">
-        <button class="btn btn-pri" style="width:100%;" onclick="goModules()">Start Quiz Now &rarr;</button>
-        <p style="margin-top: 20px; font-size: 12px; opacity: 0.6;">Designed for 2026 Examination Standards</p>
+        <h1>O-LEVEL <span style="color:var(--dark)">ELITE</span></h1>
+        <p>Student Examination Portal 2026</p>
+        <input type="text" id="u-name" class="u-input" placeholder="Enter your name to begin">
+        <button class="btn btn-pri" style="width:100%; font-size: 1.1rem; padding: 18px;" onclick="goModules()">Start Exam &rarr;</button>
+        <div style="margin-top: 25px; font-size: 0.8rem; color: #94a3b8; display: flex; justify-content: center; gap: 10px;">
+            <span>● Secured</span> <span>● Latest Pattern</span> <span>● Free Access</span>
+        </div>
     </div>
 
     <div id="scr-ins" class="hidden">
@@ -110,18 +130,11 @@
         <h2 style="margin:0;">Final Result</h2>
         <div id="r-grade" style="font-size:70px; font-weight:800; color:var(--primary); margin:10px 0;">S</div>
         <h3 id="r-score" style="margin-top:-10px;">Score: 0 / 25</h3>
-
         <div class="donate-box">
             <h4 style="margin:0; color:var(--primary);">☕ Support developer's Work</h4>
             <img class="qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=upi://pay?pa=mandavikaushal913@okaxis%26pn=MANDAVI%26cu=INR" alt="UPI QR">
-            <p style="font-weight:600;">Scan to Donate | </p>
+            <p style="font-weight:600;">Scan to Donate</p>
             <a href="upi://pay?pa=mandavikaushal913@okaxis&pn=MANDAVI&cu=INR" class="btn" style="background:#22c55e; color:white; width:220px; margin:auto;">Click to Pay</a>
-        </div>
-
-        <div style="display:flex; justify-content:center; gap:10px; margin:25px 0;">
-            <button id="f-all" class="f-btn active-all" onclick="filterReview('all')">All</button>
-            <button id="f-correct" class="f-btn" onclick="filterReview('correct')">Correct ✅</button>
-            <button id="f-wrong" class="f-btn" onclick="filterReview('wrong')">Wrong ❌</button>
         </div>
         <div id="rev-list" style="text-align:left; background:#f8fafc; padding:20px; border-radius:20px; max-height:350px; overflow-y:auto; border:1px solid #eee;"></div>
         <button class="btn btn-pri" style="width:100%; margin-top:25px;" onclick="location.reload()">Restart Portal</button>
@@ -129,9 +142,8 @@
 </div>
 
 <script type="module">
-    // Logic bilkul wahi hai jo aapne pucha tha (Unchanged)
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-app.js";
-    import { getDatabase, ref, get, push } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-database.js";
+    import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-database.js";
 
     const firebaseConfig = {
         apiKey: "AIzaSyBtK_ABh5RiHV_lX-WZ8FLbVxq7Rh93q_0",
@@ -143,22 +155,19 @@
 
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
-    let qs = [], ans = {}, cur = 0, mod = "", timer, timeLeft = 1800, reviewData = [];
+    let qs = [], ans = {}, cur = 0, timer, timeLeft = 1800, reviewData = [];
 
     const safeHTML = (str) => { const div = document.createElement('div'); div.textContent = str; return div.innerHTML; };
 
     function openFullscreen() {
         const elem = document.documentElement;
-        if (elem.requestFullscreen) { elem.requestFullscreen(); }
-        else if (elem.webkitRequestFullscreen) { elem.webkitRequestFullscreen(); }
-        else if (elem.msRequestFullscreen) { elem.msRequestFullscreen(); }
+        if (elem.requestFullscreen) elem.requestFullscreen();
+        else if (elem.webkitRequestFullscreen) elem.webkitRequestFullscreen();
     }
 
-    document.addEventListener('keydown', function(e) {
-        if (e.key === "F12" || (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J" || e.key === "C")) || (e.ctrlKey && e.key === "U")) {
-            e.preventDefault();
-            alert("Security: Developer Tools disabled!");
-            return false;
+    document.addEventListener('keydown', (e) => {
+        if (e.key === "F12" || (e.ctrlKey && e.shiftKey && "IJC".includes(e.key)) || (e.ctrlKey && e.key === "u")) {
+            e.preventDefault(); return false;
         }
     });
 
@@ -168,19 +177,18 @@
             openFullscreen(); 
             document.getElementById('display-u-name').innerText = name;
             document.getElementById('header-bar').style.display = 'flex';
-            hide(); 
-            document.getElementById('scr-ins').classList.remove('hidden'); 
+            hide(); document.getElementById('scr-ins').classList.remove('hidden'); 
         } else alert("Naam likhna zaroori hai!"); 
     };
 
     window.start = async (m) => {
-        mod = m; const snap = await get(ref(db, `quizzes/${m}`));
+        const snap = await get(ref(db, `quizzes/${m}`));
         if(snap.exists()) {
-            document.getElementById('display-mod').innerText = "Module: " + m;
             qs = snap.val(); hide(); document.getElementById('scr-quiz').classList.remove('hidden');
+            document.getElementById('display-mod').innerText = "Module: " + m;
             document.getElementById('mod-label').innerText = "Paper: " + m;
             startClock(); buildPal(); render();
-        } else { alert("Is module mein sawal nahi hain!"); location.reload(); }
+        }
     };
 
     function startClock() { timer = setInterval(() => { timeLeft--; let m = Math.floor(timeLeft/60), s = timeLeft%60; document.getElementById('clock').innerText = `${m}:${s<10?'0':''}${s}`; if(timeLeft <= 0) finish(); }, 1000); }
@@ -200,33 +208,24 @@
 
     window.nav = (s) => { cur += s; render(); };
 
-    window.finish = async () => {
+    window.finish = () => {
         if(timeLeft > 0 && !confirm("Final Submit?")) return;
         clearInterval(timer); let score = 0; reviewData = [];
         qs.forEach((q, i) => { const isC = ans[i] === q.answer; if(isC) score++; reviewData.push({ text: q.text, userAns: ans[i]||'N/A', correctAns: q.answer, isCorrect: isC }); });
         const per = (score/qs.length)*100;
-        let g = per>=85?'S':per>=75?'A':per>=65?'B':per>=55?'C':per>=50?'D':'F';
-        if(g === 'S' || g === 'A') confetti();
         document.getElementById('r-score').innerText = `Score: ${score} / ${qs.length}`;
-        document.getElementById('r-grade').innerText = g;
-        hide(); document.getElementById('scr-res').classList.remove('hidden'); filterReview('all');
+        document.getElementById('r-grade').innerText = per>=85?'S':per>=75?'A':per>=65?'B':per>=55?'C':per>=50?'D':'F';
+        if(per>=75) confetti();
+        hide(); document.getElementById('scr-res').classList.remove('hidden');
         document.getElementById('header-bar').style.display = 'none';
-        if (document.exitFullscreen) { document.exitFullscreen(); }
-    };
-
-    window.filterReview = (type) => {
-        const box = document.getElementById('rev-list'); box.innerHTML = '';
+        const rList = document.getElementById('rev-list');
         reviewData.forEach((item, i) => {
-            if(type === 'all' || (type === 'correct' && item.isCorrect) || (type === 'wrong' && !item.isCorrect)) {
-                box.innerHTML += `<div style="padding:12px; margin-bottom:10px; border-left:5px solid ${item.isCorrect?'#10b981':'#f43f5e'}; background:white; border-radius:8px; border:1px solid #eee;">
-                    <b>Q${i+1}: ${safeHTML(item.text)}</b><br>
-                    <span>Your Ans: <span style="color:${item.isCorrect?'green':'red'}">${safeHTML(item.userAns)}</span></span> | 
-                    <span>Correct: <span style="color:green">${safeHTML(item.correctAns)}</span></span>
-                </div>`;
-            }
+            rList.innerHTML += `<div style="padding:10px; border-bottom:1px solid #eee;">
+                <b>Q${i+1}: ${safeHTML(item.text)}</b><br>
+                <span style="color:${item.isCorrect?'green':'red'}">Your: ${safeHTML(item.userAns)}</span> | Correct: <span style="color:green">${safeHTML(item.correctAns)}</span>
+            </div>`;
         });
-        document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('active-all'));
-        document.getElementById('f-'+type).classList.add('active-all');
+        if (document.exitFullscreen) document.exitFullscreen();
     };
 
     function hide() { ['scr-login','scr-ins','scr-quiz','scr-res'].forEach(id => document.getElementById(id).classList.add('hidden')); }
