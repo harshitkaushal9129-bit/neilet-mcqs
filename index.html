@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>O-Level Practice Set | NIELIT MCQs by Harshit</title>
+    <title>O-Level Practice Set | NIELIT MCQs by Sandeep</title>
     <meta name="description" content="Best O-Level practice set for M1, M2, M3, and M4. Practice NIELIT MCQs for free and check your score live.">
-    <meta name="keywords" content="O Level MCQ, NIELIT Exam, Python Quiz, M1 M2 M3 M4 Practice">
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
@@ -22,41 +21,35 @@
         .container { background: white; border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); width: 100%; max-width: 1100px; padding: 30px; align-self: center; border: 1px solid #fff; }
         .hidden { display: none !important; }
 
-        /* Sidebar Layout */
         .quiz-wrapper { display: flex; gap: 30px; margin-top: 20px; }
         .main-quiz-area { flex: 1; }
         .right-sidebar { width: 280px; background: #f8fafc; padding: 20px; border-radius: 20px; border: 1px solid #e2e8f0; height: fit-content; position: sticky; top: 20px; }
 
         @media (max-width: 900px) { .quiz-wrapper { flex-direction: column; } .right-sidebar { width: 100%; } }
 
-        /* Palette Grid */
         .p-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 15px; }
         .p-btn { aspect-ratio: 1; border-radius: 10px; border: 1px solid #cbd5e1; background: white; cursor: pointer; font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: 14px; }
         .p-btn.done { background: var(--success); color: white; border: none; }
         .p-btn.active { background: var(--primary); color: white; transform: scale(1.1); box-shadow: 0 4px 12px rgba(99,102,241,0.3); }
 
-        /* Question Card */
         .q-card { background: #fff; padding: 30px; border-radius: 20px; border: 1px solid #f1f5f9; min-height: 300px; margin-bottom: 20px; }
         .q-text { font-size: 22px; font-weight: 600; color: var(--dark); margin-bottom: 25px; line-height: 1.5; white-space: pre-wrap; }
         .opt { padding: 18px; border: 2px solid #f1f5f9; border-radius: 15px; background: white; cursor: pointer; text-align: left; font-size: 17px; margin-bottom: 12px; width: 100%; display: block; }
         .opt:hover { border-color: var(--primary); background: #f5f3ff; }
         .opt.selected { background: var(--primary); color: white; border-color: var(--primary); }
 
-        /* Result Styles */
         .grade-disp { font-size: 80px; font-weight: 800; color: var(--primary); margin: 10px 0; }
         .filter-container { display: flex; justify-content: center; gap: 10px; margin: 25px 0; flex-wrap: wrap; }
         .f-btn { padding: 12px 20px; border-radius: 10px; border: 2px solid #e2e8f0; background: white; cursor: pointer; font-weight: 600; color: #64748b; }
         .f-btn.active-all { border-color: var(--primary); color: var(--primary); background: #f5f3ff; }
-        .f-btn.active-correct { border-color: var(--success); color: var(--success); background: #f0fff4; }
-        .f-btn.active-wrong { border-color: var(--danger); color: var(--danger); background: #fff5f5; }
 
         .btn { padding: 14px 28px; border-radius: 12px; border: none; cursor: pointer; font-weight: 700; display: flex; align-items: center; gap: 8px; justify-content: center; text-decoration: none; }
         .btn-pri { background: var(--primary); color: white; }
+
+        .donate-box { margin: 25px 0; padding: 25px; border: 2px dashed var(--primary); border-radius: 25px; background: #f8fafc; text-align: center; }
+        .qr-img { width: 200px; height: 200px; border: 10px solid white; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); margin: 15px auto; }
         
         #rev-list code { background: #eee; padding: 2px 5px; border-radius: 4px; font-family: monospace; }
-
-        /* Donation Box Styling */
-        .donate-box { margin: 25px 0; padding: 20px; border: 2px dashed var(--primary); border-radius: 20px; background: #f5f3ff; text-align: center; }
     </style>
 </head>
 <body>
@@ -84,7 +77,6 @@
             <span id="mod-label" style="font-weight:700; color:var(--primary); font-size:1.1rem;"></span>
             <div style="background:#fee2e2; color:var(--danger); padding:8px 15px; border-radius:12px; font-weight:700;">⏱ <span id="clock">30:00</span></div>
         </div>
-
         <div class="quiz-wrapper">
             <div class="main-quiz-area">
                 <div class="q-card">
@@ -97,13 +89,9 @@
                     <button class="btn btn-pri" id="b-next" onclick="nav(1)">Next</button>
                 </div>
             </div>
-            
             <div class="right-sidebar">
                 <h4 style="margin:0 0 10px 0;">Question Palette</h4>
                 <div class="p-grid" id="p-grid"></div>
-                <div style="margin-top:20px; font-size:12px; border-top:1px solid #eee; padding-top:10px;">
-                    <span style="display:flex; align-items:center; gap:5px;"><div style="width:10px; height:10px; background:var(--success); border-radius:2px;"></div> Done</span>
-                </div>
             </div>
         </div>
     </div>
@@ -114,12 +102,15 @@
         <h3 id="r-score" style="margin-top:-15px;">Score: 0 / 25</h3>
         
         <div class="donate-box">
-            <h4 style="margin:0; color:var(--primary);">☕ Support This Portal</h4>
-            <p style="font-size:14px; margin:5px 0 15px 0;">Agar aapko ye test helpfull laga, toh aap small donation de sakte hain.</p>
-            <a href="upi://pay?pa=harshitkaushal9129@okicici&pn=Harshit&cu=INR" class="btn" style="background:#22c55e; color:white; display:inline-flex;">
-                ₹ Donate via UPI
+            <h4 style="margin:0; color:var(--primary);">☕ Support Sandeep's Work</h4>
+            <p style="font-size:14px; margin:5px 0;">Agar ye portal helpful hai, toh 10-20rs donate karein!</p>
+            
+            <img class="qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=225x225&data=upi://pay?pa=9580807075@ybl%26pn=Sandeep%26cu=INR" alt="UPI QR Code">
+            
+            <p style="font-weight:700; color:var(--dark); margin:10px 0 5px 0;">Scan with GPay/PhonePe/Paytm</p>
+            <a href="upi://pay?pa=9580807075@ybl&pn=Sandeep&cu=INR" class="btn" style="background:#22c55e; color:white; display:inline-flex; width:220px; margin:auto;">
+                Direct UPI Pay
             </a>
-            <p style="font-size:11px; margin-top:8px; color:#64748b;">UPI ID: harshitkaushal9129@okicici</p>
         </div>
 
         <div class="filter-container">
@@ -127,13 +118,10 @@
             <button id="f-correct" class="f-btn" onclick="filterReview('correct')">Correct ✅</button>
             <button id="f-wrong" class="f-btn" onclick="filterReview('wrong')">Incorrect ❌</button>
         </div>
-
         <div id="rev-list" style="text-align:left; background:#f8fafc; padding:20px; border-radius:20px; max-height:400px; overflow-y:auto; border:1px solid #eee;"></div>
         <button class="btn btn-pri" style="width:100%; margin-top:25px;" onclick="location.reload()">Back to Home</button>
     </div>
 </div>
-
-<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="harshitkaushal" data-description="Support me on Buy me a coffee!" data-message="Aapki help se hum aur free content la payenge!" data-color="#6366f1" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-app.js";
@@ -149,7 +137,6 @@
 
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
-
     let qs = [], ans = {}, cur = 0, mod = "", timer, timeLeft = 1800, reviewData = [];
 
     const safeHTML = (str) => {
@@ -229,14 +216,11 @@
             if(isC) score++;
             reviewData.push({ text: q.text, userAns: ans[i] || 'N/A', correctAns: q.answer, isCorrect: isC });
         });
-
         const per = (score/qs.length)*100;
         let g = per>=85?'S':per>=75?'A':per>=65?'B':per>=55?'C':per>=50?'D':'F';
         if(g === 'S' || g === 'A') confetti();
-
         const name = document.getElementById('u-name').value;
         await push(ref(db, 'results'), { name, score, grade: g, module: mod });
-
         hide(); document.getElementById('scr-res').classList.remove('hidden');
         document.getElementById('r-score').innerText = `Total Score: ${score} / ${qs.length}`;
         document.getElementById('r-grade').innerText = g;
@@ -246,24 +230,13 @@
     window.filterReview = (type) => {
         const box = document.getElementById('rev-list');
         box.innerHTML = '';
-        
-        document.getElementById('f-all').className = 'f-btn';
-        document.getElementById('f-correct').className = 'f-btn';
-        document.getElementById('f-wrong').className = 'f-btn';
-
-        if(type === 'all') document.getElementById('f-all').classList.add('active-all');
-        if(type === 'correct') document.getElementById('f-correct').classList.add('active-correct');
-        if(type === 'wrong') document.getElementById('f-wrong').classList.add('active-wrong');
-
         reviewData.forEach((item, i) => {
             if(type === 'all' || (type === 'correct' && item.isCorrect) || (type === 'wrong' && !item.isCorrect)) {
                 box.innerHTML += `
                     <div style="padding:15px; border-radius:12px; margin-bottom:10px; border-left: 6px solid ${item.isCorrect?'#10b981':'#f43f5e'}; background:${item.isCorrect?'#f0fff4':'#fff5f5'}">
                         <p style="margin:0 0 5px 0; font-weight:600;">${i+1}. ${safeHTML(item.text)}</p>
-                        <div style="font-size: 0.9rem;">
-                            <span>Aapka Jawab: <code style="color:${item.isCorrect?'green':'red'}">${safeHTML(item.userAns)}</code></span><br>
-                            <span>Sahi Jawab: <code style="color:green">${safeHTML(item.correctAns)}</code></span>
-                        </div>
+                        <span>Jawab: <code style="color:${item.isCorrect?'green':'red'}">${safeHTML(item.userAns)}</code></span><br>
+                        <span>Sahi: <code style="color:green">${safeHTML(item.correctAns)}</code></span>
                     </div>`;
             }
         });
