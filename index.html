@@ -9,8 +9,15 @@
     <style>
         :root { --primary: #6366f1; --success: #10b981; --danger: #f43f5e; --dark: #0f172a; --bg: #f1f5f9; }
         * { box-sizing: border-box; font-family: 'Outfit', sans-serif; transition: 0.3s; }
-        body { background: var(--bg); margin: 0; padding: 15px; display: flex; justify-content: center; min-height: 100vh; overflow-x: hidden; }
-        .container { background: white; border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); width: 100%; max-width: 1100px; padding: 30px; align-self: center; border: 1px solid #fff; }
+        body { background: var(--bg); margin: 0; padding: 15px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; overflow-x: hidden; }
+        
+        /* New Header Style */
+        .exam-header { width: 100%; max-width: 1100px; background: var(--dark); color: white; padding: 15px 25px; border-radius: 15px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 10px 15px rgba(0,0,0,0.1); display: none; }
+        .user-info { display: flex; align-items: center; gap: 10px; font-weight: 600; }
+        .dot { height: 10px; width: 10px; background-color: #22c55e; border-radius: 50%; display: inline-block; animation: blink 1.5s infinite; }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+
+        .container { background: white; border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); width: 100%; max-width: 1100px; padding: 30px; border: 1px solid #fff; }
         .hidden { display: none !important; }
         .quiz-wrapper { display: flex; gap: 30px; margin-top: 20px; }
         .main-quiz-area { flex: 1; }
@@ -33,7 +40,18 @@
         .active-all { border-color: var(--primary); color: var(--primary); background: #f5f3ff; }
     </style>
 </head>
-<body oncontextmenu="return false;"> <div class="container">
+<body oncontextmenu="return false;">
+
+<div id="header-bar" class="exam-header">
+    <div class="user-info">
+        <span class="dot"></span>
+        <span id="display-u-name">Student</span>
+    </div>
+    <div style="font-family:'Montserrat'; font-weight:700; letter-spacing:1px;">O-LEVEL ELITE PORTAL</div>
+    <div id="display-mod" style="color:var(--success);">Module: --</div>
+</div>
+
+<div class="container">
     <div id="scr-login" style="max-width: 400px; margin: auto; text-align: center;">
         <h1 style="color:var(--primary); font-family:'Montserrat';">O-LEVEL ELITE</h1>
         <p>Student Examination Portal</p>
@@ -120,22 +138,21 @@
         else if (elem.msRequestFullscreen) { elem.msRequestFullscreen(); }
     }
 
-    // --- SECURITY BLOCKS (DevTools & Keys) ---
+    // --- SECURITY BLOCKS ---
     document.addEventListener('keydown', function(e) {
-        // Block F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
-        if (e.key === "F12" || 
-            (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J" || e.key === "C")) || 
-            (e.ctrlKey && e.key === "U")) {
+        if (e.key === "F12" || (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J" || e.key === "C")) || (e.ctrlKey && e.key === "U")) {
             e.preventDefault();
-            alert("Warning: Developer Tools are restricted!");
+            alert("Security: Developer Tools disabled!");
             return false;
         }
     });
 
-    // --- CORE QUIZ FUNCTIONS ---
     window.goModules = () => { 
-        if(document.getElementById('u-name').value.trim()) { 
-            openFullscreen(); // Start Fullscreen
+        const name = document.getElementById('u-name').value.trim();
+        if(name) { 
+            openFullscreen(); 
+            document.getElementById('display-u-name').innerText = name;
+            document.getElementById('header-bar').style.display = 'flex';
             hide(); 
             document.getElementById('scr-ins').classList.remove('hidden'); 
         } else alert("Naam likhna zaroori hai!"); 
@@ -144,6 +161,7 @@
     window.start = async (m) => {
         mod = m; const snap = await get(ref(db, `quizzes/${m}`));
         if(snap.exists()) {
+            document.getElementById('display-mod').innerText = "Module: " + m;
             qs = snap.val(); hide(); document.getElementById('scr-quiz').classList.remove('hidden');
             document.getElementById('mod-label').innerText = "Paper: " + m;
             startClock(); buildPal(); render();
@@ -177,7 +195,8 @@
         document.getElementById('r-score').innerText = `Score: ${score} / ${qs.length}`;
         document.getElementById('r-grade').innerText = g;
         hide(); document.getElementById('scr-res').classList.remove('hidden'); filterReview('all');
-        if (document.exitFullscreen) { document.exitFullscreen(); } // Exit Fullscreen on completion
+        document.getElementById('header-bar').style.display = 'none'; // Hide header on result
+        if (document.exitFullscreen) { document.exitFullscreen(); }
     };
 
     window.filterReview = (type) => {
