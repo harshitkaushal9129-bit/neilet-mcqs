@@ -3,17 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-        
-        <title> O-Level Practice Set | mcqs 
-        
-        
-        </title>
-
-        
-        
-        
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <title>O-Level Practice Set | NIELIT MCQs by Harshit</title>
+    <meta name="description" content="Best O-Level practice set for M1, M2, M3, and M4. Practice NIELIT MCQs for free and check your score live.">
+    <meta name="keywords" content="O Level MCQ, NIELIT Exam, Python Quiz, M1 M2 M3 M4 Practice">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     
     <style>
@@ -47,7 +42,7 @@
         .opt:hover { border-color: var(--primary); background: #f5f3ff; }
         .opt.selected { background: var(--primary); color: white; border-color: var(--primary); }
 
-        /* Result & Smart Filter Styles */
+        /* Result Styles */
         .grade-disp { font-size: 80px; font-weight: 800; color: var(--primary); margin: 10px 0; }
         .filter-container { display: flex; justify-content: center; gap: 10px; margin: 25px 0; flex-wrap: wrap; }
         .f-btn { padding: 12px 20px; border-radius: 10px; border: 2px solid #e2e8f0; background: white; cursor: pointer; font-weight: 600; color: #64748b; }
@@ -55,10 +50,13 @@
         .f-btn.active-correct { border-color: var(--success); color: var(--success); background: #f0fff4; }
         .f-btn.active-wrong { border-color: var(--danger); color: var(--danger); background: #fff5f5; }
 
-        .btn { padding: 14px 28px; border-radius: 12px; border: none; cursor: pointer; font-weight: 700; display: flex; align-items: center; gap: 8px; justify-content: center; }
+        .btn { padding: 14px 28px; border-radius: 12px; border: none; cursor: pointer; font-weight: 700; display: flex; align-items: center; gap: 8px; justify-content: center; text-decoration: none; }
         .btn-pri { background: var(--primary); color: white; }
         
         #rev-list code { background: #eee; padding: 2px 5px; border-radius: 4px; font-family: monospace; }
+
+        /* Donation Box Styling */
+        .donate-box { margin: 25px 0; padding: 20px; border: 2px dashed var(--primary); border-radius: 20px; background: #f5f3ff; text-align: center; }
     </style>
 </head>
 <body>
@@ -115,6 +113,15 @@
         <div id="r-grade" class="grade-disp">S</div>
         <h3 id="r-score" style="margin-top:-15px;">Score: 0 / 25</h3>
         
+        <div class="donate-box">
+            <h4 style="margin:0; color:var(--primary);">☕ Support This Portal</h4>
+            <p style="font-size:14px; margin:5px 0 15px 0;">Agar aapko ye test helpfull laga, toh aap small donation de sakte hain.</p>
+            <a href="upi://pay?pa=harshitkaushal9129@okicici&pn=Harshit&cu=INR" class="btn" style="background:#22c55e; color:white; display:inline-flex;">
+                ₹ Donate via UPI
+            </a>
+            <p style="font-size:11px; margin-top:8px; color:#64748b;">UPI ID: harshitkaushal9129@okicici</p>
+        </div>
+
         <div class="filter-container">
             <button id="f-all" class="f-btn active-all" onclick="filterReview('all')">All Questions</button>
             <button id="f-correct" class="f-btn" onclick="filterReview('correct')">Correct ✅</button>
@@ -125,6 +132,8 @@
         <button class="btn btn-pri" style="width:100%; margin-top:25px;" onclick="location.reload()">Back to Home</button>
     </div>
 </div>
+
+<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="harshitkaushal" data-description="Support me on Buy me a coffee!" data-message="Aapki help se hum aur free content la payenge!" data-color="#6366f1" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-app.js";
@@ -143,7 +152,6 @@
 
     let qs = [], ans = {}, cur = 0, mod = "", timer, timeLeft = 1800, reviewData = [];
 
-    // Safety function for HTML tags
     const safeHTML = (str) => {
         const div = document.createElement('div');
         div.textContent = str;
@@ -188,7 +196,6 @@
 
     function render() {
         const q = qs[cur];
-        // Using safeHTML to prevent tags from rendering as actual HTML
         document.getElementById('q-text').innerHTML = `${cur+1}. ${safeHTML(q.text)}`;
         const box = document.getElementById('opt-box'); box.innerHTML = '';
         q.options.forEach(o => {
