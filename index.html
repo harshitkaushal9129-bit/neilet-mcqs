@@ -3,56 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>O-Level Practice Set | NIELIT MCQs for students</title>
-    
+    <title>O-Level Practice Set | MANDAVI</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-    
     <style>
-        :root {
-            --primary: #6366f1; --success: #10b981; --danger: #f43f5e; 
-            --dark: #0f172a; --bg: #f1f5f9;
-        }
+        :root { --primary: #6366f1; --success: #10b981; --danger: #f43f5e; --dark: #0f172a; --bg: #f1f5f9; }
         * { box-sizing: border-box; font-family: 'Outfit', sans-serif; transition: 0.3s; }
         body { background: var(--bg); margin: 0; padding: 15px; display: flex; justify-content: center; min-height: 100vh; }
-        
         .container { background: white; border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); width: 100%; max-width: 1100px; padding: 30px; align-self: center; border: 1px solid #fff; }
         .hidden { display: none !important; }
-
         .quiz-wrapper { display: flex; gap: 30px; margin-top: 20px; }
         .main-quiz-area { flex: 1; }
         .right-sidebar { width: 280px; background: #f8fafc; padding: 20px; border-radius: 20px; border: 1px solid #e2e8f0; height: fit-content; position: sticky; top: 20px; }
-
         @media (max-width: 900px) { .quiz-wrapper { flex-direction: column; } .right-sidebar { width: 100%; } }
-
         .p-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 15px; }
         .p-btn { aspect-ratio: 1; border-radius: 10px; border: 1px solid #cbd5e1; background: white; cursor: pointer; font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: 14px; }
         .p-btn.done { background: var(--success); color: white; border: none; }
         .p-btn.active { background: var(--primary); color: white; transform: scale(1.1); box-shadow: 0 4px 12px rgba(99,102,241,0.3); }
-
         .q-card { background: #fff; padding: 30px; border-radius: 20px; border: 1px solid #f1f5f9; min-height: 300px; margin-bottom: 20px; }
         .q-text { font-size: 22px; font-weight: 600; color: var(--dark); margin-bottom: 25px; line-height: 1.5; white-space: pre-wrap; }
         .opt { padding: 18px; border: 2px solid #f1f5f9; border-radius: 15px; background: white; cursor: pointer; text-align: left; font-size: 17px; margin-bottom: 12px; width: 100%; display: block; }
         .opt:hover { border-color: var(--primary); background: #f5f3ff; }
         .opt.selected { background: var(--primary); color: white; border-color: var(--primary); }
-
-        .grade-disp { font-size: 80px; font-weight: 800; color: var(--primary); margin: 10px 0; }
-        .filter-container { display: flex; justify-content: center; gap: 10px; margin: 25px 0; flex-wrap: wrap; }
-        .f-btn { padding: 12px 20px; border-radius: 10px; border: 2px solid #e2e8f0; background: white; cursor: pointer; font-weight: 600; color: #64748b; }
-        .f-btn.active-all { border-color: var(--primary); color: var(--primary); background: #f5f3ff; }
-
         .btn { padding: 14px 28px; border-radius: 12px; border: none; cursor: pointer; font-weight: 700; display: flex; align-items: center; gap: 8px; justify-content: center; text-decoration: none; }
         .btn-pri { background: var(--primary); color: white; }
-
         .donate-box { margin: 25px 0; padding: 25px; border: 2px dashed var(--primary); border-radius: 25px; background: #f8fafc; text-align: center; }
         .qr-img { width: 220px; height: 220px; border: 10px solid white; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); margin: 15px auto; }
-        
-        /* Floating Button Custom UI */
-        .floating-bmc { position: fixed; bottom: 25px; right: 25px; background: #FFDD00; color: #000; padding: 15px 25px; border-radius: 50px; display: flex; align-items: center; gap: 10px; cursor: pointer; font-weight: 700; box-shadow: 0 10px 30px rgba(0,0,0,0.2); z-index: 999; border: none; }
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; justify-content: center; align-items: center; z-index: 1000; }
-        
-        #rev-list code { background: #eee; padding: 2px 5px; border-radius: 4px; font-family: monospace; }
+        .f-btn { padding: 10px 15px; border-radius: 8px; border: 1px solid #ddd; cursor: pointer; background: white; }
+        .active-all { border-color: var(--primary); color: var(--primary); background: #f5f3ff; }
     </style>
 </head>
 <body>
@@ -60,18 +38,18 @@
 <div class="container">
     <div id="scr-login" style="max-width: 400px; margin: auto; text-align: center;">
         <h1 style="color:var(--primary); font-family:'Montserrat';">O-LEVEL ELITE</h1>
-        <p>Created by MANDAVI</p>
+        <p>Student Portal by MANDAVI</p>
         <input type="text" id="u-name" placeholder="Apna Pura Naam..." style="width:100%; padding:18px; border-radius:15px; border:2px solid #ddd; margin-bottom:20px; outline:none;">
         <button class="btn btn-pri" style="width:100%;" onclick="goModules()">Start Exam &rarr;</button>
     </div>
 
     <div id="scr-ins" class="hidden">
-        <h2 style="font-family:'Montserrat'; text-align:center;">Select Paper Module</h2>
+        <h2 style="text-align:center;">Select Paper</h2>
         <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:20px; margin-top:20px;">
-            <div onclick="start('M1')" class="btn" style="background:white; border:1px solid #ddd; color:var(--dark); height:120px; flex-direction:column;"><b>M1</b><span>IT Tools</span></div>
-            <div onclick="start('M2')" class="btn" style="background:white; border:1px solid #ddd; color:var(--dark); height:120px; flex-direction:column;"><b>M2</b><span>Web Design</span></div>
-            <div onclick="start('M3')" class="btn" style="background:white; border:1px solid #ddd; color:var(--dark); height:120px; flex-direction:column;"><b>M3</b><span>Python</span></div>
-            <div onclick="start('M4')" class="btn" style="background:white; border:1px solid #ddd; color:var(--dark); height:120px; flex-direction:column;"><b>M4</b><span>IoT</span></div>
+            <div onclick="start('M1')" class="btn" style="background:white; border:1px solid #ddd; height:100px; flex-direction:column;"><b>M1</b><span>IT Tools</span></div>
+            <div onclick="start('M2')" class="btn" style="background:white; border:1px solid #ddd; height:100px; flex-direction:column;"><b>M2</b><span>Web Design</span></div>
+            <div onclick="start('M3')" class="btn" style="background:white; border:1px solid #ddd; height:100px; flex-direction:column;"><b>M3</b><span>Python</span></div>
+            <div onclick="start('M4')" class="btn" style="background:white; border:1px solid #ddd; height:100px; flex-direction:column;"><b>M4</b><span>IoT</span></div>
         </div>
     </div>
 
@@ -82,55 +60,33 @@
         </div>
         <div class="quiz-wrapper">
             <div class="main-quiz-area">
-                <div class="q-card">
-                    <div class="q-text" id="q-text">Sawal Load Ho Raha Hai...</div>
-                    <div id="opt-box"></div>
-                </div>
-                <div style="display:flex; justify-content:space-between; gap:10px;">
-                    <button class="btn" style="background:#e2e8f0;" id="b-prev" onclick="nav(-1)">Previous</button>
-                    <button class="btn" style="background:var(--danger); color:white;" onclick="finish()">Submit Quiz</button>
-                    <button class="btn btn-pri" id="b-next" onclick="nav(1)">Next</button>
-                </div>
+                <div class="q-card"><div class="q-text" id="q-text">Loading...</div><div id="opt-box"></div></div>
+                <div style="display:flex; justify-content:space-between;"><button class="btn" style="background:#e2e8f0;" onclick="nav(-1)">Back</button><button class="btn btn-pri" onclick="nav(1)">Next</button></div>
+                <button class="btn" style="background:var(--danger); color:white; width:100%; margin-top:15px;" onclick="finish()">Final Submit</button>
             </div>
-            <div class="right-sidebar">
-                <h4 style="margin:0 0 10px 0;">Question Palette</h4>
-                <div class="p-grid" id="p-grid"></div>
-            </div>
+            <div class="right-sidebar"><h4>Palette</h4><div class="p-grid" id="p-grid"></div></div>
         </div>
     </div>
 
     <div id="scr-res" class="hidden" style="text-align:center;">
         <h2>Scorecard</h2>
-        <div id="r-grade" class="grade-disp">S</div>
+        <div id="r-grade" style="font-size:60px; font-weight:800; color:var(--primary);">S</div>
         <h3 id="r-score">Score: 0 / 25</h3>
-        
+
         <div class="donate-box">
             <h4>☕ Support MANDAVI's Work</h4>
             <img class="qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=upi://pay?pa=mandavikaushal913@okaxis%26pn=MANDAVI%26cu=INR">
-            <a href="upi://pay?pa=mandavikaushal913@okaxis&pn=MANDAVI&cu=INR" class="btn" style="background:#22c55e; color:white; width:220px; margin:auto;">UPI Pay Now</a>
+            <p>Scan to Support | UPI: mandavikaushal913@okaxis</p>
+            <a href="upi://pay?pa=mandavikaushal913@okaxis&pn=MANDAVI&cu=INR" class="btn" style="background:#22c55e; color:white; width:220px; margin:auto;">Pay via App</a>
         </div>
 
-        <div class="filter-container">
-            <button id="f-all" class="f-btn active-all" onclick="filterReview('all')">All Questions</button>
+        <div style="display:flex; justify-content:center; gap:10px; margin:20px 0;">
+            <button id="f-all" class="f-btn active-all" onclick="filterReview('all')">All</button>
             <button id="f-correct" class="f-btn" onclick="filterReview('correct')">Correct ✅</button>
             <button id="f-wrong" class="f-btn" onclick="filterReview('wrong')">Wrong ❌</button>
         </div>
-        <div id="rev-list" style="text-align:left; background:#f8fafc; padding:20px; border-radius:20px; max-height:400px; overflow-y:auto; border:1px solid #eee;"></div>
-        <button class="btn btn-pri" style="width:100%; margin-top:25px;" onclick="location.reload()">Back to Home</button>
-    </div>
-</div>
-
-<button class="floating-bmc" onclick="document.getElementById('upi-modal').classList.remove('hidden')">
-    <span style="font-size:22px;">☕</span> Buy me a coffee
-</button>
-
-<div id="upi-modal" class="modal-overlay hidden">
-    <div style="background:white; padding:30px; border-radius:25px; text-align:center; position:relative; max-width:350px; width:90%;">
-        <span onclick="document.getElementById('upi-modal').classList.add('hidden')" style="position:absolute; top:15px; right:20px; cursor:pointer; font-size:24px;">&times;</span>
-        <h3 style="margin-top:0;">Support Mandavi</h3>
-        <img style="width:200px;" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=mandavikaushal913@okaxis%26pn=MANDAVI%26cu=INR">
-        <p style="font-weight:bold; margin:15px 0;">UPI: mandavikaushal913@okaxis</p>
-        <a href="upi://pay?pa=mandavikaushal913@okaxis&pn=MANDAVI&cu=INR" class="btn btn-pri" style="width:100%;">Open UPI App</a>
+        <div id="rev-list" style="text-align:left; max-height:300px; overflow-y:auto; background:#f8fafc; padding:15px; border-radius:15px;"></div>
+        <button class="btn btn-pri" style="width:100%; margin-top:20px;" onclick="location.reload()">Home</button>
     </div>
 </div>
 
@@ -150,58 +106,41 @@
     const db = getDatabase(app);
     let qs = [], ans = {}, cur = 0, mod = "", timer, timeLeft = 1800, reviewData = [];
 
-    const safeHTML = (str) => { const div = document.createElement('div'); div.textContent = str; return div.innerHTML; };
-
-    window.goModules = () => { if(document.getElementById('u-name').value.trim()) { hide(); document.getElementById('scr-ins').classList.remove('hidden'); } else alert("Naam likhna zaroori hai!"); };
-
+    window.goModules = () => { if(document.getElementById('u-name').value) { hide(); document.getElementById('scr-ins').classList.remove('hidden'); } };
     window.start = async (m) => {
         mod = m; const snap = await get(ref(db, `quizzes/${m}`));
-        if(snap.exists()) { qs = snap.val(); hide(); document.getElementById('scr-quiz').classList.remove('hidden'); document.getElementById('mod-label').innerText = "Paper: " + m; startClock(); buildPal(); render(); }
+        if(snap.exists()) { qs = snap.val(); hide(); document.getElementById('scr-quiz').classList.remove('hidden'); render(); startClock(); buildPal(); }
     };
-
-    function startClock() { timer = setInterval(() => { timeLeft--; let m = Math.floor(timeLeft/60), s = timeLeft%60; document.getElementById('clock').innerText = `${m}:${s<10?'0':''}${s}`; if(timeLeft <= 0) finish(); }, 1000); }
-
+    function startClock() { timer = setInterval(() => { timeLeft--; document.getElementById('clock').innerText = Math.floor(timeLeft/60)+":"+(timeLeft%60<10?'0':'')+timeLeft%60; if(timeLeft<=0) finish(); }, 1000); }
     function buildPal() { const p = document.getElementById('p-grid'); p.innerHTML = ''; qs.forEach((_, i) => { const b = document.createElement('button'); b.className = 'p-btn'; b.id = `p-${i}`; b.innerText = i+1; b.onclick = () => { cur = i; render(); }; p.appendChild(b); }); }
-
     function render() {
-        const q = qs[cur]; document.getElementById('q-text').innerHTML = `${cur+1}. ${safeHTML(q.text)}`;
+        const q = qs[cur]; document.getElementById('q-text').innerText = (cur+1)+". "+q.text;
         const box = document.getElementById('opt-box'); box.innerHTML = '';
-        q.options.forEach(o => { const btn = document.createElement('button'); btn.className = `opt ${ans[cur] === o ? 'selected' : ''}`; btn.innerHTML = safeHTML(o); btn.onclick = () => { ans[cur] = o; updateUI(); render(); }; box.appendChild(btn); });
+        q.options.forEach(o => { const btn = document.createElement('button'); btn.className = `opt ${ans[cur] === o ? 'selected' : ''}`; btn.innerText = o; btn.onclick = () => { ans[cur] = o; updateUI(); render(); }; box.appendChild(btn); });
         updateUI();
-        document.getElementById('b-prev').style.visibility = cur === 0 ? 'hidden' : 'visible';
-        document.getElementById('b-next').style.visibility = cur === qs.length-1 ? 'hidden' : 'visible';
     }
-
     function updateUI() { document.querySelectorAll('.p-btn').forEach((b, i) => { b.classList.remove('active', 'done'); if(i === cur) b.classList.add('active'); if(ans[i]) b.classList.add('done'); }); }
-
-    window.nav = (s) => { cur += s; render(); };
-
+    window.nav = (s) => { cur = Math.min(Math.max(0, cur+s), qs.length-1); render(); };
     window.finish = async () => {
-        if(timeLeft > 0 && !confirm("Final Submit?")) return;
         clearInterval(timer); let score = 0; reviewData = [];
-        qs.forEach((q, i) => { const isC = ans[i] === q.answer; if(isC) score++; reviewData.push({ text: q.text, userAns: ans[i] || 'N/A', correctAns: q.answer, isCorrect: isC }); });
+        qs.forEach((q, i) => { const isC = ans[i] === q.answer; if(isC) score++; reviewData.push({ text: q.text, userAns: ans[i]||'N/A', correct: q.answer, isCorrect: isC }); });
         const per = (score/qs.length)*100;
         let g = per>=85?'S':per>=75?'A':per>=65?'B':per>=55?'C':per>=50?'D':'F';
         if(g === 'S' || g === 'A') confetti();
-        document.getElementById('r-score').innerText = `Total Score: ${score} / ${qs.length}`;
+        document.getElementById('r-score').innerText = `Score: ${score} / ${qs.length}`;
         document.getElementById('r-grade').innerText = g;
         hide(); document.getElementById('scr-res').classList.remove('hidden'); filterReview('all');
     };
-
     window.filterReview = (type) => {
         const box = document.getElementById('rev-list'); box.innerHTML = '';
         reviewData.forEach((item, i) => {
             if(type === 'all' || (type === 'correct' && item.isCorrect) || (type === 'wrong' && !item.isCorrect)) {
-                box.innerHTML += `<div style="padding:15px; border-radius:12px; margin-bottom:10px; border-left: 6px solid ${item.isCorrect?'#10b981':'#f43f5e'}; background:${item.isCorrect?'#f0fff4':'#fff5f5'}">
-                    <p style="margin:0 0 5px 0; font-weight:600;">${i+1}. ${safeHTML(item.text)}</p>
-                    <span>Jawab: <code style="color:${item.isCorrect?'green':'red'}">${safeHTML(item.userAns)}</code></span> | <span>Sahi: <code style="color:green">${safeHTML(item.correctAns)}</code></span>
+                box.innerHTML += `<div style="padding:10px; border-bottom:1px solid #ddd; color:${item.isCorrect?'green':'red'}">
+                    <b>Q${i+1}: ${item.text}</b><br>Ans: ${item.userAns} | Sahi: ${item.correct}
                 </div>`;
             }
         });
-        document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('active-all'));
-        document.getElementById('f-'+type).classList.add('active-all');
     };
-
     function hide() { ['scr-login','scr-ins','scr-quiz','scr-res'].forEach(id => document.getElementById(id).classList.add('hidden')); }
 </script>
 </body>
