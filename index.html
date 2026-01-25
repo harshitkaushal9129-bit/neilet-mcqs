@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>O-Level Practice Set | NIELIT MCQs by MANDAVI</title>
-    <meta name="description" content="Best O-Level practice set for M1, M2, M3, and M4. Practice NIELIT MCQs for free and check your score live.">
+    <title>O-Level Practice Set | NIELIT MCQs for students</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
@@ -49,10 +48,9 @@
         .donate-box { margin: 25px 0; padding: 25px; border: 2px dashed var(--primary); border-radius: 25px; background: #f8fafc; text-align: center; }
         .qr-img { width: 220px; height: 220px; border: 10px solid white; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); margin: 15px auto; }
         
-        /* Floating Coffee Style (Desi UPI Version) */
+        /* Floating Button Custom UI */
         .floating-bmc { position: fixed; bottom: 25px; right: 25px; background: #FFDD00; color: #000; padding: 15px 25px; border-radius: 50px; display: flex; align-items: center; gap: 10px; cursor: pointer; font-weight: 700; box-shadow: 0 10px 30px rgba(0,0,0,0.2); z-index: 999; border: none; }
-        .floating-bmc:hover { transform: translateY(-5px); }
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: flex; justify-content: center; align-items: center; z-index: 1000; }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; justify-content: center; align-items: center; z-index: 1000; }
         
         #rev-list code { background: #eee; padding: 2px 5px; border-radius: 4px; font-family: monospace; }
     </style>
@@ -62,7 +60,7 @@
 <div class="container">
     <div id="scr-login" style="max-width: 400px; margin: auto; text-align: center;">
         <h1 style="color:var(--primary); font-family:'Montserrat';">O-LEVEL ELITE</h1>
-        <p>Student Examination Portal by MANDAVI</p>
+        <p>Created by MANDAVI</p>
         <input type="text" id="u-name" placeholder="Apna Pura Naam..." style="width:100%; padding:18px; border-radius:15px; border:2px solid #ddd; margin-bottom:20px; outline:none;">
         <button class="btn btn-pri" style="width:100%;" onclick="goModules()">Start Exam &rarr;</button>
     </div>
@@ -79,7 +77,7 @@
 
     <div id="scr-quiz" class="hidden">
         <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #eee; padding-bottom:15px;">
-            <span id="mod-label" style="font-weight:700; color:var(--primary); font-size:1.1rem;"></span>
+            <span id="mod-label" style="font-weight:700; color:var(--primary);"></span>
             <div style="background:#fee2e2; color:var(--danger); padding:8px 15px; border-radius:12px; font-weight:700;">⏱ <span id="clock">30:00</span></div>
         </div>
         <div class="quiz-wrapper">
@@ -102,19 +100,18 @@
     </div>
 
     <div id="scr-res" class="hidden" style="text-align:center;">
-        <h2 style="margin:0;">Scorecard</h2>
+        <h2>Scorecard</h2>
         <div id="r-grade" class="grade-disp">S</div>
-        <h3 id="r-score" style="margin-top:-15px;">Score: 0 / 25</h3>
+        <h3 id="r-score">Score: 0 / 25</h3>
         
         <div class="donate-box">
-            <h4 style="margin:0; color:var(--primary);">☕ Support MANDAVI's Work</h4>
-            <img class="qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=upi://pay?pa=mandavikaushal913@okaxis%26pn=MANDAVI%26cu=INR" alt="QR Code">
-            <p style="font-weight:700; margin:10px 0;">Scan & Pay for Coffee</p>
-            <a href="upi://pay?pa=mandavikaushal913@okaxis&pn=MANDAVI&cu=INR" class="btn" style="background:#22c55e; color:white; display:inline-flex; width:220px; margin:auto;">Click to Pay (UPI)</a>
+            <h4>☕ Support MANDAVI's Work</h4>
+            <img class="qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=upi://pay?pa=mandavikaushal913@okaxis%26pn=MANDAVI%26cu=INR">
+            <a href="upi://pay?pa=mandavikaushal913@okaxis&pn=MANDAVI&cu=INR" class="btn" style="background:#22c55e; color:white; width:220px; margin:auto;">UPI Pay Now</a>
         </div>
 
         <div class="filter-container">
-            <button id="f-all" class="f-btn active-all" onclick="filterReview('all')">All</button>
+            <button id="f-all" class="f-btn active-all" onclick="filterReview('all')">All Questions</button>
             <button id="f-correct" class="f-btn" onclick="filterReview('correct')">Correct ✅</button>
             <button id="f-wrong" class="f-btn" onclick="filterReview('wrong')">Wrong ❌</button>
         </div>
@@ -123,17 +120,17 @@
     </div>
 </div>
 
-<button class="floating-bmc" onclick="openSupport()">
+<button class="floating-bmc" onclick="document.getElementById('upi-modal').classList.remove('hidden')">
     <span style="font-size:22px;">☕</span> Buy me a coffee
 </button>
 
-<div id="support-modal" class="modal-overlay hidden">
-    <div style="background:white; padding:30px; border-radius:25px; text-align:center; position:relative; max-width:350px;">
-        <span onclick="closeSupport()" style="position:absolute; top:15px; right:20px; cursor:pointer; font-size:24px;">&times;</span>
+<div id="upi-modal" class="modal-overlay hidden">
+    <div style="background:white; padding:30px; border-radius:25px; text-align:center; position:relative; max-width:350px; width:90%;">
+        <span onclick="document.getElementById('upi-modal').classList.add('hidden')" style="position:absolute; top:15px; right:20px; cursor:pointer; font-size:24px;">&times;</span>
         <h3 style="margin-top:0;">Support Mandavi</h3>
         <img style="width:200px;" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=mandavikaushal913@okaxis%26pn=MANDAVI%26cu=INR">
-        <p style="font-weight:bold; margin:10px 0;">UPI ID: mandavikaushal913@okaxis</p>
-        <a href="upi://pay?pa=mandavikaushal913@okaxis&pn=MANDAVI&cu=INR" class="btn btn-pri" style="width:100%;">Pay via App</a>
+        <p style="font-weight:bold; margin:15px 0;">UPI: mandavikaushal913@okaxis</p>
+        <a href="upi://pay?pa=mandavikaushal913@okaxis&pn=MANDAVI&cu=INR" class="btn btn-pri" style="width:100%;">Open UPI App</a>
     </div>
 </div>
 
@@ -153,91 +150,42 @@
     const db = getDatabase(app);
     let qs = [], ans = {}, cur = 0, mod = "", timer, timeLeft = 1800, reviewData = [];
 
-    const safeHTML = (str) => { const d = document.createElement('div'); d.textContent = str; return d.innerHTML; };
+    const safeHTML = (str) => { const div = document.createElement('div'); div.textContent = str; return div.innerHTML; };
 
-    window.openSupport = () => document.getElementById('support-modal').classList.remove('hidden');
-    window.closeSupport = () => document.getElementById('support-modal').classList.add('hidden');
-
-    window.goModules = () => {
-        if(document.getElementById('u-name').value.trim()) {
-            hide(); document.getElementById('scr-ins').classList.remove('hidden');
-        } else alert("Naam likhna zaroori hai!");
-    };
+    window.goModules = () => { if(document.getElementById('u-name').value.trim()) { hide(); document.getElementById('scr-ins').classList.remove('hidden'); } else alert("Naam likhna zaroori hai!"); };
 
     window.start = async (m) => {
-        mod = m;
-        const snap = await get(ref(db, `quizzes/${m}`));
-        if(snap.exists()) {
-            qs = snap.val();
-            hide(); document.getElementById('scr-quiz').classList.remove('hidden');
-            document.getElementById('mod-label').innerText = "Module: " + m;
-            startClock(); buildPal(); render();
-        }
+        mod = m; const snap = await get(ref(db, `quizzes/${m}`));
+        if(snap.exists()) { qs = snap.val(); hide(); document.getElementById('scr-quiz').classList.remove('hidden'); document.getElementById('mod-label').innerText = "Paper: " + m; startClock(); buildPal(); render(); }
     };
 
-    function startClock() {
-        timer = setInterval(() => {
-            timeLeft--;
-            let m = Math.floor(timeLeft/60), s = timeLeft%60;
-            document.getElementById('clock').innerText = `${m}:${s<10?'0':''}${s}`;
-            if(timeLeft <= 0) finish();
-        }, 1000);
-    }
+    function startClock() { timer = setInterval(() => { timeLeft--; let m = Math.floor(timeLeft/60), s = timeLeft%60; document.getElementById('clock').innerText = `${m}:${s<10?'0':''}${s}`; if(timeLeft <= 0) finish(); }, 1000); }
 
-    function buildPal() {
-        const p = document.getElementById('p-grid'); p.innerHTML = '';
-        qs.forEach((_, i) => {
-            const b = document.createElement('button');
-            b.className = 'p-btn'; b.id = `p-${i}`; b.innerText = i+1;
-            b.onclick = () => { cur = i; render(); };
-            p.appendChild(b);
-        });
-    }
+    function buildPal() { const p = document.getElementById('p-grid'); p.innerHTML = ''; qs.forEach((_, i) => { const b = document.createElement('button'); b.className = 'p-btn'; b.id = `p-${i}`; b.innerText = i+1; b.onclick = () => { cur = i; render(); }; p.appendChild(b); }); }
 
     function render() {
-        const q = qs[cur];
-        document.getElementById('q-text').innerHTML = `${cur+1}. ${safeHTML(q.text)}`;
+        const q = qs[cur]; document.getElementById('q-text').innerHTML = `${cur+1}. ${safeHTML(q.text)}`;
         const box = document.getElementById('opt-box'); box.innerHTML = '';
-        q.options.forEach(o => {
-            const btn = document.createElement('button');
-            btn.className = `opt ${ans[cur] === o ? 'selected' : ''}`;
-            btn.innerHTML = safeHTML(o);
-            btn.onclick = () => { ans[cur] = o; updateUI(); render(); };
-            box.appendChild(btn);
-        });
+        q.options.forEach(o => { const btn = document.createElement('button'); btn.className = `opt ${ans[cur] === o ? 'selected' : ''}`; btn.innerHTML = safeHTML(o); btn.onclick = () => { ans[cur] = o; updateUI(); render(); }; box.appendChild(btn); });
         updateUI();
         document.getElementById('b-prev').style.visibility = cur === 0 ? 'hidden' : 'visible';
         document.getElementById('b-next').style.visibility = cur === qs.length-1 ? 'hidden' : 'visible';
     }
 
-    function updateUI() {
-        document.querySelectorAll('.p-btn').forEach((b, i) => {
-            b.classList.remove('active', 'done');
-            if(i === cur) b.classList.add('active');
-            if(ans[i]) b.classList.add('done');
-        });
-    }
+    function updateUI() { document.querySelectorAll('.p-btn').forEach((b, i) => { b.classList.remove('active', 'done'); if(i === cur) b.classList.add('active'); if(ans[i]) b.classList.add('done'); }); }
 
     window.nav = (s) => { cur += s; render(); };
 
     window.finish = async () => {
         if(timeLeft > 0 && !confirm("Final Submit?")) return;
-        clearInterval(timer);
-        let score = 0; reviewData = [];
-        qs.forEach((q, i) => {
-            const isC = ans[i] === q.answer;
-            if(isC) score++;
-            reviewData.push({ text: q.text, userAns: ans[i] || 'N/A', correctAns: q.answer, isCorrect: isC });
-        });
+        clearInterval(timer); let score = 0; reviewData = [];
+        qs.forEach((q, i) => { const isC = ans[i] === q.answer; if(isC) score++; reviewData.push({ text: q.text, userAns: ans[i] || 'N/A', correctAns: q.answer, isCorrect: isC }); });
         const per = (score/qs.length)*100;
         let g = per>=85?'S':per>=75?'A':per>=65?'B':per>=55?'C':per>=50?'D':'F';
         if(g === 'S' || g === 'A') confetti();
-        const name = document.getElementById('u-name').value;
-        await push(ref(db, 'results'), { name, score, grade: g, module: mod });
-        hide(); document.getElementById('scr-res').classList.remove('hidden');
         document.getElementById('r-score').innerText = `Total Score: ${score} / ${qs.length}`;
         document.getElementById('r-grade').innerText = g;
-        filterReview('all');
+        hide(); document.getElementById('scr-res').classList.remove('hidden'); filterReview('all');
     };
 
     window.filterReview = (type) => {
@@ -246,11 +194,12 @@
             if(type === 'all' || (type === 'correct' && item.isCorrect) || (type === 'wrong' && !item.isCorrect)) {
                 box.innerHTML += `<div style="padding:15px; border-radius:12px; margin-bottom:10px; border-left: 6px solid ${item.isCorrect?'#10b981':'#f43f5e'}; background:${item.isCorrect?'#f0fff4':'#fff5f5'}">
                     <p style="margin:0 0 5px 0; font-weight:600;">${i+1}. ${safeHTML(item.text)}</p>
-                    <span>Your Answer: <code style="color:${item.isCorrect?'green':'red'}">${safeHTML(item.userAns)}</code></span><br>
-                    <span>Correct: <code style="color:green">${safeHTML(item.correctAns)}</code></span>
+                    <span>Jawab: <code style="color:${item.isCorrect?'green':'red'}">${safeHTML(item.userAns)}</code></span> | <span>Sahi: <code style="color:green">${safeHTML(item.correctAns)}</code></span>
                 </div>`;
             }
         });
+        document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('active-all'));
+        document.getElementById('f-'+type).classList.add('active-all');
     };
 
     function hide() { ['scr-login','scr-ins','scr-quiz','scr-res'].forEach(id => document.getElementById(id).classList.add('hidden')); }
